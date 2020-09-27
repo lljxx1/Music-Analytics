@@ -1,0 +1,240 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <!-- <link rel="stylesheet" href="./assets/fonts/Feather/feather.css">
+    <link rel="stylesheet" href="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="./assets/libs/flickity-fade/flickity-fade.css">
+    <link rel="stylesheet" href="./assets/libs/flickity/dist/flickity.min.css">
+    <link rel="stylesheet" href="./assets/libs/highlightjs/styles/vs2015.css">
+    <link rel="stylesheet" href="./assets/libs/jarallax/dist/jarallax.css">
+    <link rel="stylesheet" href="./assets/libs/quill/dist/quill.core.css" /> -->
+
+    <!-- Map -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/css/theme.min.css">
+    <title>歌单助手 - 歌单导出备份、歌单分析, 支持网易云音乐、虾米音乐等平台</title>
+
+  </head>
+  <body class="bg-light">
+
+    <!-- NAVBAR
+    ================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="./index.html" style="color: #222; font-size: 20px">
+          <img src="/images/music.svg" class="navbar-brand-img" alt="...">
+          <!-- 歌单助手 -->
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fe fe-x"></i>
+          </button>
+          <!-- Navigation -->
+          <ul class="navbar-nav ml-auto">
+          </ul>
+          <!-- Button -->
+        </div>
+
+      </div>
+    </nav>
+
+
+    <!-- WELCOME
+    ================================================== -->
+    <section class="position-relative py-8 py-md-11 mb-9">
+
+      <!-- Shape -->
+      <div class="shape shape-fluid-x shape-blur-1 svg-shim text-gray-200">
+        <svg viewBox="0 0 723 569" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M703.969 241.602l-.006-.003C716.081 262.97 723 287.677 723 314c0 68.917-47.425 126.757-111.42 142.665L246.7 556.937C226.465 564.729 204.481 569 181.5 569 81.26 569 0 487.74 0 387.5c0-34.256 9.49-66.296 25.985-93.633l-.016.008L141.512 77.548C162.753 33.305 207.123 2.273 258.951.12l.008-.12h251.04l.003.01c41.848.557 78.081 24.378 96.356 59.12l.001-.005 97.61 182.477z" fill="currentColor"/></svg>
+      </div>
+      
+      <!-- Contetn -->
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 order-md-2">
+            
+            <!-- Image -->
+            <div class="img-skewed img-skewed-left mb-8 mb-md-0">
+              <img src="/images/dashkit.jpg" alt="..." class="screenshot img-fluid mw-md-130" data-aos="img-skewed-item-left" data-aos-delay="100">
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 order-md-1" data-aos="fade-up">
+            
+            <!-- Heading -->
+            <h1 class="display-3">
+              歌单助手 <br>
+              <!-- <span class="text-primary">built with Dashkit</span>. -->
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-muted mb-6 mb-md-8">
+              对多个平台的歌单进行备份导出、分析都自己听过些啥，热爱什么艺术家。
+            </p>
+
+            <!-- Buttons -->
+            <a href="#!" class="btn btn-primary mr-1 lift">
+             下载 <i class="fe fe-arrow-right ml-3"></i>
+            </a>
+            <a href="https://support.qq.com/products/284751" target="_blank" class="btn btn-primary-soft lift">
+              问题反馈
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+
+    </section>
+
+    
+    <section class="pt-8 pt-md-12 pb-10 pb-md-14 pb-lg-15">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-12 col-md-6">
+              
+              <!-- Image -->
+              <div class="img-skewed img-skewed-right mb-10 mb-md-0">
+                <img src="/images/dashkit-layered.png" alt="..." class="img-fluid aos-init aos-animate" data-aos="img-skewed-item-right">
+              </div>
+  
+            </div>
+            <div class="col-12 col-md-6 col-lg-5">
+              
+              <!-- Heading -->
+              <h2>
+                艺术家<br>
+                <span class="text-primary"></span>
+              </h2>
+  
+              <!-- Text -->
+              <p class="font-size-lg text-gray-700 mb-6">
+               分析收藏最多的艺术家
+              </p>
+  
+              <!-- Stats -->
+              <!-- <div class="d-flex">
+                <div class="pr-5">
+                  <h3 class="mb-0">
+                    <span data-toggle="countup" data-from="0" data-to="100" data-aos="" data-aos-id="countup:in" class="aos-init aos-animate counted">100</span>+
+                  </h3>
+                  <p class="text-gray-700 mb-0">
+                    Components
+                  </p>
+                </div>
+                <div class="border-left border-gray-300"></div>
+                <div class="px-5">
+                  <h3 class="mb-0">
+                      <span data-toggle="countup" data-from="0" data-to="99.99" data-decimals="2" data-aos="" data-aos-id="countup:in" class="aos-init aos-animate counted">99.99</span>%
+                  </h3>
+                  <p class="text-gray-700 mb-0">
+                    Satisfaction
+                  </p>
+                </div>
+                <div class="border-left border-gray-300"></div>
+                <div class="pl-5">
+                  <h3 class="mb-0">
+                      <span data-toggle="countup" data-from="0" data-to="5.0" data-decimals="1" data-aos="" data-aos-id="countup:in" class="aos-init aos-animate counted">5.0</span>/5.0
+                  </h3>
+                  <p class="text-gray-700 mb-0">
+                    Review Score
+                  </p>
+                </div>
+              </div> -->
+  
+            </div>
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </section>
+
+
+
+      <section class="pt-8 pt-md-12 pb-10 pb-md-14 pb-lg-15">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 text-center">
+              <h1 class="display-4">支持平台</h1>
+              <!-- 网易云音乐 虾米音乐 -->
+              <p class="font-size-lg text-muted mb-6 mb-md-8">
+                网易云音乐支持超过1000首以上的歌单导出，虾米支持超过5000首后的导出
+              </p>
+              <p class="font-size-lg text-muted mb-6 mb-md-8">
+                <img src="/images/163.png" height="40" style="margin-right: 10px"/>
+                <img src="/images/xiami.png" height="40" />
+              </p>
+            </div>
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </section>
+  
+
+    <!-- FOOTER
+    ================================================== -->
+    <footer class="py-4 bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-5 col-lg-5">
+            <!-- Text -->
+            <p class="text-gray-700 mb-0">
+                © 2020 fun. All rights reserved.
+            </p>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </footer>
+
+    <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Libs JS -->
+    <!-- <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script> -->
+    <script src="/js/aos.js"></script>
+    
+    <!-- <script src="./assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="./assets/libs/countup.js/dist/countUp.min.js"></script>
+    <script src="./assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="./assets/libs/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="./assets/libs/flickity-fade/flickity-fade.js"></script>
+    <script src="./assets/libs/highlightjs/highlight.pack.min.js"></script>
+    <script src="./assets/libs/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="./assets/libs/isotope-layout/dist/isotope.pkgd.min.js"></script>
+    <script src="./assets/libs/jarallax/dist/jarallax.min.js"></script>
+    <script src="./assets/libs/jarallax/dist/jarallax-video.min.js"></script>
+    <script src="./assets/libs/jarallax/dist/jarallax-element.min.js"></script>
+    <script src="./assets/libs/quill/dist/quill.min.js"></script>
+    <script src="./assets/libs/smooth-scroll/dist/smooth-scroll.min.js"></script>
+    <script src="./assets/libs/typed.js/lib/typed.min.js"></script> -->
+
+    <!-- Map -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <script>
+        AOS.init();
+      </script>
+
+    <!-- Theme JS -->
+    <!-- <script src="./assets/js/theme.min.js"></script> -->
+
+      
+  </body>
+</html>

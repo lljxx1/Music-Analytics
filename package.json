@@ -1,5 +1,5 @@
 {
-  "name": "music-exporter",
+  "name": "music-helper",
   "version": "0.0.1",
   "author": "fun <lljxx1@gmail.com>",
   "description": "歌单备份、分析",
@@ -18,7 +18,7 @@
   },
   "build": {
     "productName": "歌单助手",
-    "appId": "com.fun.musicexporter",
+    "appId": "com.fun.musichelper",
     "directories": {
       "output": "build"
     },
