@@ -14,7 +14,7 @@
         <a-menu-item key="2" :to="'/artists'">
           <router-link  :to="'/artists'">
             <a-icon type="user" />
-            <span>艺人</span>
+            <span>艺术家</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="3">
@@ -25,7 +25,7 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout>
+    <a-layout style="height:100vh; overflow-y:scroll">
       <a-layout-content
         :style="{ margin: '24px 16px', minHeight: '280px' }"
       >
@@ -54,4 +54,8 @@
     /* text-align: center; */
   }
   /* CSS */
+
+  #app .ant-table-pagination.ant-pagination {
+    margin-right: 20px;
+  }
 </style>

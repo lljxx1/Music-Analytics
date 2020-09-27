@@ -50,17 +50,21 @@ export default class Netease {
       type: QueryTypes.SELECT,
     });
 
-    const likePlaylist = allPlaylist
+    const likePlaylists = allPlaylist
       .map((_) => {
         return JSON.parse(_.playlist);
       })
       .filter((playlist) => {
-        return playlist.name == "我喜欢的音乐";
-      })[0];
+        return playlist.name == "我喜欢的音乐" && playlist.trackCount > 0;
+      });
+    
+    console.log('likePlaylists', likePlaylists)
+    const likePlaylist = likePlaylists[0]
 
     if (!likePlaylist) {
         throw new Error("没有找到“我喜欢的音乐”歌单");
     }
+
 
     const sql =
       "select web_track.* from web_playlist_track left join web_track on web_track.tid = web_playlist_track.tid where pid = " +
@@ -95,6 +99,7 @@ export default class Netease {
         album_name: track.album.name,
         artist_name: track.artists.map((_) => _.name).join(","),
         album_logo: track.album.picUrl,
+        // artist_logo: track.album.artistLogo,
       };
     });
     // console.log("songRows", formattedSongs.length);

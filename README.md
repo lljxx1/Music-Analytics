@@ -1,8 +1,10 @@
-# music-exporter
+# 歌单助手
 
-> Export
+> 备份歌单、歌单分析
 
-#### Build Setup
+#### 支持平台
+- 网易云音乐
+- 虾米音乐
 
 ``` bash
 # install dependencies

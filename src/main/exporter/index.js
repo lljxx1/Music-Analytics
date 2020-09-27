@@ -1,10 +1,13 @@
 // const Netease = require("./platform/netease");
 import Netease from './platform/netease'
+import Xiami from './platform/xiami'
+
 const { Song, sequelize } = require("./databse");
 const { QueryTypes } = require("sequelize");
 
+
 export function findSources() {
-  const sources = [new Netease()];
+  const sources = [new Netease(), new Xiami()];
   const exists = [];
   for (let index = 0; index < sources.length; index++) {
     const source = sources[index];
@@ -20,6 +23,9 @@ function getFinder(type) {
   if (type == "cloudmusic") {
     return new Netease();
   }
+  if (type == "xiami") {
+    return new Xiami();
+  }
 }
 
 const chunk = (arr, size) =>
@@ -33,14 +39,16 @@ export async function importSource(typeDef) {
   driver.isExists();
   // console.log(driver);
   const allSongs = await driver.export();
-  const stepItems = chunk(allSongs, 500);
+  const stepItems = chunk(allSongs, 300);
   try {
     await Song.sync({ alter: true });
-  } catch (e) {}
+  } catch (e) {
+    console.log(e)
+  }
   let imported = 0;
   for (let index = 0; index < stepItems.length; index++) {
     const songs = stepItems[index];
-    // console.log("insert", songs.length);
+    console.log("insert", songs.length);
     try {
       await Song.bulkCreate(songs, { ignoreDuplicates: true });
       imported += songs.length

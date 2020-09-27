@@ -3,15 +3,21 @@
     <a-card title="检测到歌单" :bordered="true" v-if="sources.length != 0 && !importing"> 
         <a-list item-layout="horizontal" :data-source="sources">
           <a-list-item slot="renderItem" slot-scope="item">
-            <a-card>
-              <span slot="title">
-                <img src="~@/assets/163.png"  v-if="item.type == 'cloudmusic'" height="20"/>
-                <img src="~@/assets/xiami.png" v-if="item.type == '163'" height="20"/>
-                {{ item.name }} </span>
-              <!-- {{ item.existsFiles }} -->
-            </a-card>
+            <a-list-item-meta>
+              <span slot="title"> {{ item.name }} </span>
+              <img
+                slot="avatar"
+                src="~@/assets/163.png"  v-if="item.type == 'cloudmusic'"
+                height="22"
+              />
+              <img
+                slot="avatar"
+                src="~@/assets/xiami.png" v-if="item.type == 'xiami'"
+                height="22"
+              />
+            </a-list-item-meta>
           </a-list-item>
-          <div style="margin-top:20px">准备导入歌单..</div>
+          <div style="border-top: 1px solid #eee; padding-top: 20px">准备导入歌单..</div>
         </a-list>
     </a-card>
     <a-card title="导入歌单" :bordered="true" v-if="importing"> 
@@ -33,10 +39,8 @@
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import api from '@/api.js'
-
   export default {
       data() {
           return {
@@ -47,7 +51,7 @@ import api from '@/api.js'
           }
       },
     name: 'landing-page',
-    components: { SystemInformation, ScaleLoader },
+    components: { ScaleLoader },
     methods: {
         async importSongs() {
           this.importing = true
@@ -77,7 +81,7 @@ import api from '@/api.js'
               })
               setTimeout(() => {
                 this.importSongs()
-              }, 5 * 1000)
+              }, 3 * 1000)
             }
             console.log('findSources', data)
         },
