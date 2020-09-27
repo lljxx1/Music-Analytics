@@ -3,6 +3,7 @@ const { QueryTypes } = require("sequelize");
 const fs = require("fs");
 const isWindows = process.platform == "win32";
 const userName = require("os").userInfo().username;
+const sqlite3 = require('sqlite3'); 
 
 console.log("userName", userName);
 
@@ -43,6 +44,9 @@ export default class Netease {
       dialect: "sqlite",
       logging: false,
       storage: cloudMusicDatabase,
+      dialectOptions: {
+        mode: sqlite3.OPEN_READONLY
+      }
     });
 
     await sequelize.authenticate();
