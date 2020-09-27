@@ -26,11 +26,13 @@ export default class Xiami {
       //     `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
       //   );
     }
-    const existsFiles = files.filter((_) =>
-      typeof _ == "string"
-        ? fs.existsSync(_)
-        : _.filter((p) => fs.existsSync(p).length == _.length)
-    );
+    const existsFiles = files.filter((_) => {
+        if(typeof _ == "string") {
+            return fs.existsSync(_)
+        } else {
+            return _.filter((p) => fs.existsSync(p)).length == _.length
+        }
+    });
     console.log("existsFiles", existsFiles);
     if (existsFiles.length == 0) {
       return null;
