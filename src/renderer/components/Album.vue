@@ -1,6 +1,6 @@
 <template>
 <a-card :bordered="true" type="inner"  :bodyStyle="{ padding: '1px 0'}"> 
-    <div style="padding: 15px">
+    <div slot="title">
       <a-radio-group name="radioGroup" v-model="filters.type" :default-value="'all'">
         <a-radio value="all">
           全部
@@ -17,8 +17,11 @@
     <!-- <a slot="name" slot-scope="text, item">
         <img :src="item.album_logo"  height="100" style="vertical-align: middle; margin-right: 10px;"/>{{ text }}
     </a> -->
-    <router-link slot="name" slot-scope="text, item" :to="item.song_url"> 
+    <span slot="name" slot-scope="text, item" > 
       <img :src="item.album_logo"  height="100" style="vertical-align: middle; margin-right: 10px;"/>{{ text }}
+    </span>
+      <router-link slot="song" slot-scope="text, item" :to="item.song_url"> 
+     {{ text }}
     </router-link>
   </a-table>
   </a-card>
@@ -37,6 +40,7 @@ import api from '@/api.js'
                         key: 'album',
                         title: '专辑',
                         scopedSlots: { customRender: 'name' },
+                       
                         // slots: { title: 'customTitle' },
                         // scopedSlots: { customRender: 'name' },
                     },
@@ -50,6 +54,7 @@ import api from '@/api.js'
                         dataIndex: 'songs',
                         key: 'song',
                         title: '歌曲数',
+                         scopedSlots: { customRender: 'song' },
                         // slots: { title: 'customTitle' },
                         // scopedSlots: { customRender: 'name' },
                     }

@@ -2,25 +2,31 @@
   <div id="app">
      <!-- <router-view></router-view> -->
     <a-layout id="components-layout-demo-custom-trigger" :style="{'min-height': '100vh'}">
-    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+    <a-layout-sider v-model="collapsed" :trigger="null" collapsible :style="{background: 'white'}"> 
       <!-- <div class="logo" /> -->
-      <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-        <a-menu-item key="1" style="margin-top:0">
+      <a-menu theme="light" mode="inline" :defaultSelectedKeys="[$route.path]">
+        <a-menu-item key="/all" style="margin-top:0">
           <router-link  :to="'/all'">
             <a-icon type="heart" />
             <span>所有收藏</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="2" :to="'/artists'">
+        <a-menu-item key="/artists" >
           <router-link  :to="'/artists'">
             <a-icon type="user" />
             <span>艺术家</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="3">
+        <a-menu-item key="/album">
           <router-link  :to="'/album'">
             <a-icon type="profile" />
             <span>专辑</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/about">
+          <router-link  :to="'/about'">
+            <a-icon type="info-circle" />
+            <span>关于</span>
           </router-link>
         </a-menu-item>
       </a-menu>
@@ -46,6 +52,25 @@
 </script>
 
 <style>
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+width:8px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+border-radius:10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+border-radius:10px;
+background:rgba(0,0,0,0.1);
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background:#ccc;
+}
 
  body {
     min-height: 100vh;

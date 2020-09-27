@@ -28,11 +28,17 @@
     <a-card title="扫描数据" v-if="sources.length == 0" :bordered="true" > 
         <scale-loader class="loading" :loading="loading" color="black" ></scale-loader>
         <span v-if="!loading">
-          没有找到歌单数据<br>
-          <br>
-          请确保软件版本大于以下：<br>
-            Mac 网易云音乐 2.3.2(Build: 832)<br>
-            Mac 网易云音乐 2.3.2(Build: 832)<br>
+          <p>没有找到歌单数据!!!<br><br>请确保软件版本大于以下：<br></p>
+          <h4>Windows</h4>
+          <ul>
+            <li>虾米音乐 7.2.8</li>
+            <li>网易云音乐 2.7.0 (Build: 198230)</li>
+          </ul>
+          <h4>Mac</h4>
+          <ul>
+            <li>网易云音乐 2.3.2 (Build: 832</li>
+          </ul>
+          <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
         </span>
     </a-card>
   </div>

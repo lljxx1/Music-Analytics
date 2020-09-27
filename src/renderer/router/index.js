@@ -26,6 +26,11 @@ export default new Router({
       component: require("@/components/Intro").default,
     },
     {
+      path: "/about",
+      name: "About",
+      component: require("@/components/About").default,
+    },
+    {
       path: "*",
       redirect: "/",
     },

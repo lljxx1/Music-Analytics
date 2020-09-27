@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 
 const apiServer = require('./exporter/api').default
 
@@ -28,7 +28,7 @@ function createWindow () {
       nodeIntegration: true, // add this
     },
   });
-
+  Menu.setApplicationMenu(null)
   mainWindow.loadURL(winURL)
   mainWindow.on('closed', () => {
     mainWindow = null

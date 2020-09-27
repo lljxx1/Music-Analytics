@@ -1,6 +1,6 @@
 <template>
 <a-card :bordered="true" type="inner"  :bodyStyle="{ padding: '1px 0'}"> 
-  <div style="padding: 15px">
+  <div slot="title">
     <a-radio-group name="radioGroup" v-model="filters.type" :default-value="'all'">
       <a-radio value="all">
         全部
@@ -14,7 +14,10 @@
     </a-radio-group>
   </div>
     <a-table :columns="columns" :loading="loading" :data-source="data" :pagination="{pageSize: 50, showTotal: total => `全部 ${total} 结果`}">
-    <router-link slot="name" slot-scope="text, item" :to="item.song_url"> 
+    <router-link slot="song" slot-scope="text, item" :to="item.song_url"> 
+      {{ text }}
+    </router-link>
+    <router-link slot="album" slot-scope="text, item" :to="item.album_url"> 
       {{ text }}
     </router-link>
   </a-table>
@@ -33,18 +36,20 @@ import api from '@/api.js'
                         key: 'name',
                         title: '艺术家',
                         // slots: { title: 'customTitle' },
-                        scopedSlots: { customRender: 'name' },
+                        // scopedSlots: { customRender: 'name' },
                     },
                     {
                         dataIndex: 'songs',
                         key: 'song',
                         title: '歌曲数',
+                        scopedSlots: { customRender: 'song' },
                         // slots: { title: 'customTitle' },
                         // scopedSlots: { customRender: 'name' },
                     },{
                         dataIndex: 'albums',
                         key: 'album',
                         title: '专辑数',
+                        scopedSlots: { customRender: 'album' },
                         // slots: { title: 'customTitle' },
                         // scopedSlots: { customRender: 'name' },
                     }
@@ -101,6 +106,9 @@ import api from '@/api.js'
           })
           this.data = data.map(_ => {
             _.song_url = '/all?filters=' + encodeURIComponent(JSON.stringify({
+              artist_name: _.artist_name
+            }))
+            _.album_url = '/album?filters=' + encodeURIComponent(JSON.stringify({
               artist_name: _.artist_name
             }))
             return _;

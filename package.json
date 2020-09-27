@@ -2,7 +2,7 @@
   "name": "music-exporter",
   "version": "0.0.1",
   "author": "fun <lljxx1@gmail.com>",
-  "description": "Export",
+  "description": "歌单备份、分析",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "歌单分析",
+    "productName": "歌单助手",
     "appId": "com.fun.musicexporter",
     "directories": {
       "output": "build"
