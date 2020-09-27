@@ -4,6 +4,7 @@ const fs = require("fs");
 const isWindows = process.platform == "win32";
 const userName = require("os").userInfo().username;
 const ini = require('ini');
+const sqlite3 = require('sqlite3'); 
 
 console.log("userName", userName);
 
@@ -67,6 +68,9 @@ export default class Xiami {
       dialect: "sqlite",
       logging: false,
       storage: xiamiDatabase,
+      dialectOptions: {
+        mode: sqlite3.OPEN_READONLY
+      }
     });
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
