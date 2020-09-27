@@ -10,6 +10,14 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
+import { ipcRenderer } from 'electron'
+import { ebtRenderer } from 'electron-baidu-tongji'
+
+
+const BAIDU_SITE_ID = '6cf3834b31b75f76863415637a5905f8'
+ebtRenderer(ipcRenderer, BAIDU_SITE_ID, router)
+
+
 Vue.use(Antd);
 
 /* eslint-disable no-new */
