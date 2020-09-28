@@ -9,7 +9,7 @@
             <p>作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
             <p>版本：0.0.1</p> 
             <p>Github: <a href="https://github.com/lljxx1/Music-Analytics" target="_blank">lljxx1/Music-Analytics</a></p>
-            <p>问题反馈:<a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a></p>
+            <p>问题反馈:<a href="https://support.qq.com/products/284751" target="_blank">https://support.qq.com/products/284751</a></p>
         </div>
 </div>
   </a-card>
