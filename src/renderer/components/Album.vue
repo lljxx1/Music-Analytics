@@ -115,6 +115,9 @@ import api from '@/api.js'
             }))
             return _;
           })
+          try {
+            window._hmt.push(['_trackEvent', 'album', 'all',  this.data.length]);
+          } catch (e) {}
           this.loading = false
           console.log('loadData', data)
         },

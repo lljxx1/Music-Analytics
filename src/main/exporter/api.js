@@ -26,7 +26,17 @@ app.get("/api/find/source", async (req, res) => {
 });
 
 app.get("/api/import", async (req, res) => {
-  res.json(await API.importSource(req.query));
+    try {
+        const rows = await API.importSource(req.query)
+        res.json({
+            state: rows
+        });
+    } catch (e) {
+        res.json({
+            error: 1,
+            msg: e.toString()
+        });
+    }
 });
 
 app.get("/api/song/query", async (req, res) => {

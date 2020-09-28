@@ -39,6 +39,7 @@ export default class Netease {
   }
 
   async export(file) {
+    // throw new Error("没有找到“我喜欢的音乐”歌单 或 “我喜欢的音乐”里没有收藏的曲目");
     const cloudMusicDatabase = file ? file : this.existsFiles[0];
     const sequelize = new Sequelize("main", null, null, {
       dialect: "sqlite",
@@ -66,9 +67,8 @@ export default class Netease {
     const likePlaylist = likePlaylists[0]
 
     if (!likePlaylist) {
-        throw new Error("没有找到“我喜欢的音乐”歌单");
+        throw new Error("没有找到“我喜欢的音乐”歌单 或 “我喜欢的音乐”里没有收藏的曲目");
     }
-
 
     const sql =
       "select web_track.* from web_playlist_track left join web_track on web_track.tid = web_playlist_track.tid where pid = " +

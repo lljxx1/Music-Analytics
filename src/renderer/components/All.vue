@@ -143,6 +143,9 @@ import moment from 'moment'
             _.link = _.type == 'cloudmusic' ? `https://music.163.com/#/song?id=${_.song_id}` : `` 
             return _
           })
+          try {
+            window._hmt.push(['_trackEvent', 'songs', 'all',  this.rows.length]);
+          } catch (e) {}
           this.loading = false
           console.log('loadSongs', data)
         },

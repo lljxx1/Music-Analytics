@@ -11,12 +11,25 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 import { ipcRenderer } from 'electron'
-import { ebtRenderer } from 'electron-baidu-tongji'
+// import { ebtRenderer } from 'electron-baidu-tongji'
+
+// const BAIDU_SITE_ID = '6cf3834b31b75f76863415637a5905f8'
+// ebtRenderer(ipcRenderer, BAIDU_SITE_ID, router)
+
+window._hmt = {
+  push() {
+    ipcRenderer.send('baidu-tongji', Array.from(arguments).sort(function (a, b) { return a - b; }))
+  },
+};
 
 
-const BAIDU_SITE_ID = '6cf3834b31b75f76863415637a5905f8'
-ebtRenderer(ipcRenderer, BAIDU_SITE_ID, router)
-
+router.beforeEach((to, _, next) => {
+  /* istanbul ignore else */
+  if (to.path) {
+    window._hmt.push(['_trackPageview', '/#' + to.fullPath])
+  }
+  next()
+})
 
 Vue.use(Antd);
 

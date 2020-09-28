@@ -17,12 +17,15 @@
               />
             </a-list-item-meta>
           </a-list-item>
-          <div style="border-top: 1px solid #eee; padding-top: 20px">准备导入歌单..</div>
+          <div style="border-top: 1px solid #eee; padding-top: 20px">
+              <scale-loader class="loading" :loading="true" color="black" ></scale-loader>
+              准备导入歌单..
+          </div>
         </a-list>
     </a-card>
     <a-card title="导入歌单" :bordered="true" v-if="importing"> 
         <scale-loader class="loading" :loading="importing" color="black" ></scale-loader>
-        <div>{{ importTip }}</div>
+        <div v-html="importTip" style="padding-top: 25px; text-align: center"></div>
     </a-card>
     <!-- <img id="logo" src="~@/assets/logo.png" alt="electron-vue"> -->
     <a-card title="扫描数据" v-if="sources.length == 0" :bordered="true" > 
@@ -69,7 +72,10 @@ import api from '@/api.js'
                 type: source.type
               }
             })
-            this.importTip = `${source.name}导入完成，发现${data.totalSong}首，已导入${data.imported}首`;
+            this.importTip = data.error ? `${source.name} <br><span style="color: red">${data.msg}</span>`: `${source.name}<br> 导入完成 发现${data.state.totalSong}首，已导入${data.state.imported}首`;
+            await new Promise((resolve, reject) => {
+              setTimeout(resolve, 3 * 1000)
+            })
           }
           this.$router.push('/all')
         },
@@ -87,8 +93,11 @@ import api from '@/api.js'
               })
               setTimeout(() => {
                 this.importSongs()
-              }, 3 * 1000)
+              }, 2 * 1000)
             }
+            try {
+              window._hmt.push(['_trackEvent', 'source', 'find', data.length]);
+            } catch (e) {}
             console.log('findSources', data)
         },
       open (link) {
