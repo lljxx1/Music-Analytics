@@ -7,7 +7,7 @@ const sqlite3 = require('sqlite3');
 
 console.log("userName", userName);
 
-export default class Netease {
+class Netease {
   constructor() {
     this.type = "cloudmusic";
     this.name = "网易云音乐";
@@ -89,11 +89,12 @@ export default class Netease {
     //     type: QueryTypes.SELECT,
     //   }
     // );
-    songRows = songRows.map((_) => {
+    console.log("track.sample", songRows[0], songRows.length);
+    songRows = songRows.filter(_ => _.track)
+    .map((_) => {
       _.track = JSON.parse(_.track);
       return _;
     });
-    console.log("track.sample", songRows[0]);
     const formattedSongs = songRows.map((_) => {
       const track = _.track;
       return {
@@ -111,7 +112,7 @@ export default class Netease {
   }
 }
 
-// exports default Netease;
+exports default Netease;
 
 // (async () => {
 //   const nete = new Netease();
