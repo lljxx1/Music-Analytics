@@ -45,6 +45,9 @@
             <li>网易云音乐 2.3.2 (Build: 832)</li>
           </ul>
           <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
+          
+          <h4>调试信息</h4>
+          <pre style="background: black; color: white">{{ debugInfo }}</pre>
         </span>
     </a-card>
   </div>
@@ -56,6 +59,7 @@ import api from '@/api.js'
   export default {
       data() {
           return {
+              debugInfo: [],
               loading: true,
               importing: false,
               importTip: null,
@@ -86,7 +90,7 @@ import api from '@/api.js'
         async findSources() {
             const { data } = await api.get('/api/find/source')
             this.loading = false
-            if(data.length) {
+            if(data.rows.length && false) {
               const logos = {
                 'cloudmusic': '~@/assets/163.png',
                 'xiami': '~@/assets/xiami.png',
@@ -96,11 +100,13 @@ import api from '@/api.js'
                   _.logo = logos[_.type]
                   return _
                 })
+                
               }
               // setTimeout(() => {
               //   this.importSongs()
               // }, 2 * 1000)
             }
+            this.debugInfo = JSON.stringify(data.debugInfos)
             try {
               window._hmt.push(['_trackEvent', 'source', 'find', data.length]);
             } catch (e) {}
