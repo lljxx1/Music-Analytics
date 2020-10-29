@@ -4,7 +4,7 @@
     <a-layout id="components-layout-demo-custom-trigger" :style="{'min-height': '100vh'}">
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible :style="{background: 'white'}"> 
       <!-- <div class="logo" /> -->
-      <a-menu theme="light" mode="inline" :defaultSelectedKeys="[$route.path]">
+      <a-menu theme="light" mode="inline" :selectedKeys="selectedKeys">
         <a-menu-item key="/all" style="margin-top:0">
           <router-link  :to="'/all'">
             <a-icon type="heart" />
@@ -12,19 +12,19 @@
           </router-link>
         </a-menu-item>
         <a-menu-item key="/artists" >
-          <router-link  :to="'/artists'">
+          <router-link :to="'/artists'">
             <a-icon type="user" />
             <span>艺术家</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="/album">
-          <router-link  :to="'/album'">
+          <router-link :to="'/album'">
             <a-icon type="profile" />
             <span>专辑</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="/">
-          <router-link  :to="'/'">
+          <router-link :to="'/'">
             <a-icon type="search" />
             <span>导入</span>
           </router-link>
@@ -53,7 +53,17 @@
 
 <script>
   export default {
-    name: 'music-exporter'
+    name: 'music-exporter',
+    data() {
+      return {
+        selectedKeys: [this.$route.path]
+      }
+    },
+    watch: {
+      $route() {
+        this.selectedKeys = [this.$route.path]
+      }
+    }
   }
 </script>
 

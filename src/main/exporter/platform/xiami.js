@@ -12,6 +12,18 @@ const os = require("os");
 console.log("userName", userName);
 const homeDir = os.homedir() || `C:\\Users\\${userName}`;
 
+ let files = [];
+ if (isWindows) {
+   files.push([
+     `${homeDir}\\AppData\\Roaming\\Xiami\\xiami_info.ini`,
+     `${homeDir}\\AppData\\Roaming\\Xiami\\Xiami.db`,
+   ]);
+ } else {
+   //   files.push(
+   //     `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
+   //   );
+ }
+
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
@@ -25,17 +37,7 @@ class Xiami {
   }
 
   isExists() {
-    let files = [];
-    if (isWindows) {
-      files.push([
-        `${homeDir}\\AppData\\Roaming\\Xiami\\xiami_info.ini`,
-        `${homeDir}\\AppData\\Roaming\\Xiami\\Xiami.db`,
-      ]);
-    } else {
-      //   files.push(
-      //     `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
-      //   );
-    }
+   
     const existsFiles = files.filter((_) => {
       if (typeof _ == "string") {
         return fs.existsSync(_);
@@ -73,6 +75,20 @@ class Xiami {
       return songIds;
     }
     return [];
+  }
+
+  getDebug() {
+    const debugInfo = {};
+    debugInfo.env = {
+      APPDATA: process.env.APPDATA,
+      USERPROFILE: process.env.USERPROFILE,
+      HOME: process.env.HOME,
+      platform: process.platform,
+      userName: userName,
+    };
+    debugInfo.checkFiles = files;
+    debugInfo.type = this.type;
+    return debugInfo;
   }
 
   async export(xiamiDatabase) {

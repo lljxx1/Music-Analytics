@@ -8,6 +8,17 @@ const os = require('os');
 console.log("userName", userName);
 const homeDir = os.homedir() || `C:\\Users\\${userName}`;
 
+let files = [];
+if (isWindows) {
+  files.push(
+    `${homeDir}\\AppData\\Local\\Netease\\CloudMusic\\Library\\webdb.dat`
+  );
+} else {
+  files.push(
+    `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
+  );
+}
+
 class Netease {
   constructor() {
     this.type = "cloudmusic";
@@ -15,16 +26,6 @@ class Netease {
     this.existsFiles = []
   }
   isExists() {
-    let files = [];
-    if (isWindows) {
-      files.push(
-        `${homeDir}\\AppData\\Local\\Netease\\CloudMusic\\Library\\webdb.dat`
-      );
-    } else {
-      files.push(
-        `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
-      );
-    }
     console.log("checkfiles", files);
     const existsFiles = files.filter((_) => fs.existsSync(_));
     console.log("existsFiles", existsFiles);
@@ -45,8 +46,9 @@ class Netease {
       APPDATA: process.env.APPDATA,
       USERPROFILE: process.env.USERPROFILE,
       HOME: process.env.HOME,
-      platform: process.platform
-    }
+      platform: process.platform,
+      userName: userName,
+    };
 
     if(!isWindows) {
       const macBaseDirectory = `/Users/${userName}/Library/Containers/com.netease.163music`
@@ -71,6 +73,9 @@ class Netease {
         }
       }
     }
+
+    debugInfo.checkFiles = files
+    debugInfo.type = this.type
 
     return debugInfo
   }

@@ -22,7 +22,7 @@
               准备导入歌单..
           </div> -->
           <div style="margin-top: 20px">
-            <a-button type="primary" @click="importSongs" size="large" style="width: 140px" icon="search">导入</a-button>
+            <a-button type="primary" @click="importSongs" size="large" style="width: 140px" icon="search">开始导入</a-button>
           </div>
         </a-list>
     </a-card>
@@ -45,7 +45,7 @@
             <li>网易云音乐 2.3.2 (Build: 832)</li>
           </ul>
           <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
-          <h4>调试信息</h4>
+          <h4 style="margin-top: 35px">调试信息</h4>
           <pre style="background: black; color: white">{{ debugInfo }}</pre>
         </span>
     </a-card>
@@ -70,6 +70,7 @@ import api from '@/api.js'
     methods: {
         async importSongs() {
           this.importing = true
+          let imported = 0
           for (let index = 0; index < this.sources.length; index++) {
             const source = this.sources[index];
             this.importTip = '正在导入 '+ source.name
@@ -78,18 +79,23 @@ import api from '@/api.js'
                 type: source.type
               }
             })
+            if (!data.error) {
+              imported += 1
+            }
             this.importTip = data.error ? `${source.name} <br><p style="color: red; margin-top: 15px">${data.msg}</p>`: `${source.name}<br> 导入完成 发现${data.state.totalSong}首，已导入${data.state.imported}首`;
             await new Promise((resolve, reject) => {
               setTimeout(resolve, (data.error ? 10 : 3) * 1000)
             })
           }
           this.importing = false;
-          // this.$router.push('/all')
+          if(imported == this.sources.length) {
+            this.$router.push('/all')
+          }
         },
         async findSources() {
             const { data } = await api.get('/api/find/source')
             this.loading = false
-            if(data.rows.length && false) {
+            if(data.rows.length) {
               const logos = {
                 'cloudmusic': '~@/assets/163.png',
                 'xiami': '~@/assets/xiami.png',
@@ -99,13 +105,12 @@ import api from '@/api.js'
                   _.logo = logos[_.type]
                   return _
                 })
-                
               }
               // setTimeout(() => {
               //   this.importSongs()
               // }, 2 * 1000)
             }
-            this.debugInfo = JSON.stringify(data.debugInfos)
+            this.debugInfo = JSON.stringify(data.debugInfos, null, 1)
             try {
               window._hmt.push(['_trackEvent', 'source', 'find', data.length]);
             } catch (e) {}
