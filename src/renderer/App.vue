@@ -23,6 +23,12 @@
             <span>专辑</span>
           </router-link>
         </a-menu-item>
+        <a-menu-item key="/">
+          <router-link  :to="'/'">
+            <a-icon type="search" />
+            <span>导入</span>
+          </router-link>
+        </a-menu-item>
         <a-menu-item key="/about">
           <router-link  :to="'/about'">
             <a-icon type="info-circle" />

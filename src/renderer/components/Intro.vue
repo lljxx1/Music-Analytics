@@ -17,9 +17,12 @@
               />
             </a-list-item-meta>
           </a-list-item>
-          <div style="border-top: 1px solid #eee; padding-top: 20px">
+          <!-- <div style="border-top: 1px solid #eee; padding-top: 20px">
               <scale-loader class="loading" :loading="true" color="black" ></scale-loader>
               准备导入歌单..
+          </div> -->
+          <div style="margin-top: 20px">
+            <a-button type="primary" @click="importSongs" size="large" style="width: 140px" icon="search">导入</a-button>
           </div>
         </a-list>
     </a-card>
@@ -34,12 +37,12 @@
           <p>没有找到歌单数据!!!<br><br>请确保软件版本大于以下：<br></p>
           <h4>Windows</h4>
           <ul>
-            <li>虾米音乐 7.2.8</li>
+            <li>虾米音乐 7.2.7</li>
             <li>网易云音乐 2.7.0 (Build: 198230)</li>
           </ul>
           <h4>Mac</h4>
           <ul>
-            <li>网易云音乐 2.3.2 (Build: 832</li>
+            <li>网易云音乐 2.3.2 (Build: 832)</li>
           </ul>
           <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
         </span>
@@ -72,12 +75,13 @@ import api from '@/api.js'
                 type: source.type
               }
             })
-            this.importTip = data.error ? `${source.name} <br><span style="color: red">${data.msg}</span>`: `${source.name}<br> 导入完成 发现${data.state.totalSong}首，已导入${data.state.imported}首`;
+            this.importTip = data.error ? `${source.name} <br><p style="color: red; margin-top: 15px">${data.msg}</p>`: `${source.name}<br> 导入完成 发现${data.state.totalSong}首，已导入${data.state.imported}首`;
             await new Promise((resolve, reject) => {
-              setTimeout(resolve, 3 * 1000)
+              setTimeout(resolve, (data.error ? 10 : 3) * 1000)
             })
           }
-          this.$router.push('/all')
+          this.importing = false;
+          // this.$router.push('/all')
         },
         async findSources() {
             const { data } = await api.get('/api/find/source')
@@ -87,13 +91,15 @@ import api from '@/api.js'
                 'cloudmusic': '~@/assets/163.png',
                 'xiami': '~@/assets/xiami.png',
               }
-              this.sources = data.map(_ => {
-                _.logo = logos[_.type]
-                return _
-              })
-              setTimeout(() => {
-                this.importSongs()
-              }, 2 * 1000)
+              if (data.rows) {
+                this.sources = data.rows.map(_ => {
+                  _.logo = logos[_.type]
+                  return _
+                })
+              }
+              // setTimeout(() => {
+              //   this.importSongs()
+              // }, 2 * 1000)
             }
             try {
               window._hmt.push(['_trackEvent', 'source', 'find', data.length]);

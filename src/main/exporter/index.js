@@ -9,14 +9,24 @@ const { QueryTypes } = require("sequelize");
 export function findSources() {
   const sources = [new Netease(), new Xiami()];
   const exists = [];
+  const debugInfos = [];
   for (let index = 0; index < sources.length; index++) {
     const source = sources[index];
     const has = source.isExists();
     if (has) {
       exists.push(has);
+    } else {
+      
+    }
+
+    if(source.getDebug) {
+      debugInfos.push(source.getDebug())
     }
   }
-  return exists;
+  return {
+    rows: exists,
+    debugInfos: debugInfos
+  };
 }
 
 function getFinder(type) {

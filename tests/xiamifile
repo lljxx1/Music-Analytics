@@ -1,18 +1,4 @@
 ./Desktop/xiami.png
-./Library/Application Support/PremiumSoft CyberTech/Navicat CC/Common/Settings/0/0/SQLite/xiami
-find: ./Library/Application Support/MobileSync: Operation not permitted
-find: ./Library/Application Support/CallHistoryTransactions: Operation not permitted
-./Library/Application Support/iTools Pro/Device/4ac492c4f36c0ed10424935044564de8611c33b7/Apps/com.xiami.spark-7.5.9.1
-./Library/Application Support/iTools Pro/Device/4ac492c4f36c0ed10424935044564de8611c33b7/Apps/com.xiami.spark-8.0.2.1
-./Library/Application Support/iTools Pro/Device/4ac492c4f36c0ed10424935044564de8611c33b7/Apps/com.xiami.spark-7.5.8.1
-./Library/Application Support/iTools Pro/Device/00008030-000204E63ED0802E/Apps/com.xiami.spark-12129533
-./Library/Application Support/iTools Pro/Device/00008030-000204E63ED0802E/Apps/com.xiami.spark-11982703
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-11614393
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-7.5.9.1
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-11213876
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-8.0.2.1
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-11279182
-./Library/Application Support/iTools Pro/Device/3eacc036a3a91d8d241ccac4e0b30fd300b81735/Apps/com.xiami.spark-7.5.8.1
 ./Library/Application Support/com.xiami.macclient
 ./Library/Application Support/com.xiami.macclient/wvapp/zcache/zxiamimacplaylist
 ./Library/Application Support/com.xiami.macclient/wvapp/zcache/zxiamimactoplist
@@ -25,38 +11,15 @@ find: ./Library/Application Support/CallHistoryTransactions: Operation not permi
 ./Library/Application Support/com.xiami.macclient/wvapp/zcache/zxiamimac
 ./Library/Application Support/com.xiami.macclient/wvapp/zcache/zxiamimacplaylistdetail
 ./Library/Application Support/com.xiami.macclient/wvapp/apps/xiamimac
-find: ./Library/Application Support/com.apple.TCC: Operation not permitted
-find: ./Library/Application Support/AddressBook: Operation not permitted
-find: ./Library/Application Support/CallHistoryDB: Operation not permitted
 ./Library/Saved Application State/com.xiami.macclient.savedState
 ./Library/Saved Application State/com.xiami.client.savedState
-find: ./Library/IdentityServices: Operation not permitted
 ./Library/WebKit/com.xiami.macclient
 ./Library/WebKit/com.xiami.macclient/WebsiteData/LocalStorage/https_h5.xiami.com_0.localstorage-shm
 ./Library/WebKit/com.xiami.macclient/WebsiteData/LocalStorage/https_h5.xiami.com_0.localstorage-wal
 ./Library/WebKit/com.xiami.macclient/WebsiteData/LocalStorage/https_h5.xiami.com_0.localstorage
-find: ./Library/Calendars: Operation not permitted
 ./Library/Preferences/com.xiami.macclient.plist
-find: ./Library/Messages: Operation not permitted
-find: ./Library/HomeKit: Operation not permitted
 ./Library/Application Scripts/com.xiami.client
-find: ./Library/Mail: Operation not permitted
-find: ./Library/Safari: Operation not permitted
-find: ./Library/Suggestions: Operation not permitted
 ./Library/Group Containers/597MX98Y4L.com.xiami.client
-find: ./Library/Containers/com.apple.VoiceMemos: Operation not permitted
-find: ./Library/Containers/com.apple.Home: Operation not permitted
-find: ./Library/Containers/com.apple.Safari: Operation not permitted
-find: ./Library/Containers/com.apple.iChat: Operation not permitted
-find: ./Library/Containers/com.apple.mail: Operation not permitted
-find: ./Library/Containers/com.apple.stocks: Operation not permitted
-find: ./Library/PersonalizationPortrait: Operation not permitted
-find: ./Library/Metadata/CoreSpotlight: Operation not permitted
-find: ./Library/Metadata/com.apple.IntelligentSuggestions: Operation not permitted
-find: ./Library/Cookies: Operation not permitted
-find: ./Library/Caches/com.apple.safaridavclient: Operation not permitted
-find: ./Library/Caches/CloudKit/com.apple.Safari: Operation not permitted
-find: ./Library/Caches/com.apple.Safari: Operation not permitted
 ./Library/Caches/com.xiami.macclient
 ./.Trash/虾米音乐.app/Contents/Resources/xiami-logo-black@2x.png
 ./Documents/ios/test/exporter/xiami.db

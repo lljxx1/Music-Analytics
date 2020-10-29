@@ -3,9 +3,10 @@ const { QueryTypes } = require("sequelize");
 const fs = require("fs");
 const isWindows = process.platform == "win32";
 const userName = require("os").userInfo().username;
-const sqlite3 = require('sqlite3'); 
-
+const sqlite3 = require('sqlite3');
+const os = require('os');
 console.log("userName", userName);
+const homeDir = os.homedir() || `C:\\Users\\${userName}`;
 
 class Netease {
   constructor() {
@@ -17,7 +18,7 @@ class Netease {
     let files = [];
     if (isWindows) {
       files.push(
-        `C:\\Users\\${userName}\\AppData\\Local\\Netease\\CloudMusic\\Library\\webdb.dat`
+        `${homeDir}\\AppData\\Local\\Netease\\CloudMusic\\Library\\webdb.dat`
       );
     } else {
       files.push(
@@ -36,6 +37,42 @@ class Netease {
         type: this.type,
         name: this.name,
       };
+  }
+
+  getDebug () {
+    const debugInfo = {}
+    debugInfo.env = {
+      APPDATA: process.env.APPDATA,
+      USERPROFILE: process.env.USERPROFILE,
+      HOME: process.env.HOME,
+      platform: process.platform
+    }
+
+    if(!isWindows) {
+      const macBaseDirectory = `/Users/${userName}/Library/Containers/com.netease.163music`
+      debugInfo.hasFolder = fs.existsSync(macBaseDirectory)
+      if(debugInfo.hasFolder) {
+        debugInfo.childFolders = fs.readdirSync(macBaseDirectory)
+        const storageBaseFile = `${macBaseDirectory}/Data/Documents/storage/`
+        debugInfo.hasStorage = fs.existsSync(storageBaseFile)
+        if (debugInfo.hasStorage) {
+          debugInfo.storageFiles = fs.readdirSync(storageBaseFile)
+        }
+      }
+    } else {
+      const winBaseFolde = `${homeDir}\\AppData\\Local\\Netease\\CloudMusic`
+      debugInfo.hasFolder = fs.existsSync(winBaseFolde)
+      if (debugInfo.hasFolder) {
+        debugInfo.childFolders = fs.readdirSync(winBaseFolde)
+        const winStorageBaseFile = `${winBaseFolde}\\Library`
+        debugInfo.hasStorage = fs.existsSync(winStorageBaseFile)
+        if (debugInfo.hasStorage) {
+          debugInfo.storageFiles = fs.readdirSync(winStorageBaseFile)
+        }
+      }
+    }
+
+    return debugInfo
   }
 
   async export(file) {
@@ -112,7 +149,8 @@ class Netease {
   }
 }
 
-exports default Netease;
+export default Netease;
+// module.exports = Netease
 
 // (async () => {
 //   const nete = new Netease();
