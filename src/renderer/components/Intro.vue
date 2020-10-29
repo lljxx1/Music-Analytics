@@ -45,7 +45,6 @@
             <li>网易云音乐 2.3.2 (Build: 832)</li>
           </ul>
           <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
-          
           <h4>调试信息</h4>
           <pre style="background: black; color: white">{{ debugInfo }}</pre>
         </span>
