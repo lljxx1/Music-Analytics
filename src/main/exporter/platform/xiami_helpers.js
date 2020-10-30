@@ -72,7 +72,8 @@ async function getXiamiSongsDataByMac(songIds, opt = {}) {
   const skipCheck = opt.skipCheck || false;
   const playItemsCount = await PlaylistItem.count();
   console.log("now playlist", playItemsCount);
-  if (songRows.length < songIds.length && !skipCheck) {
+  const percentTotal = (songIds.length - songRows.length) / songIds.length * 100
+  if (percentTotal > 5 && !skipCheck) {
     let posIndex = 0;
     const stepItems = chunk(songIds, 300);
     try {
@@ -138,7 +139,7 @@ async function getXiamiSongFromMac(opts) {
 }
 
 function getXiamiMacEnv() {
-  
+
 }
 
 

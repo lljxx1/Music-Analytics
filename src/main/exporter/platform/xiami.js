@@ -143,7 +143,8 @@ class Xiami {
       }
     );
     PlaylistItem.removeAttribute("id");
-    if (songRows.length < songIds.length) {
+    const percentTotal = (songIds.length - songRows.length) / songIds.length * 100
+    if (percentTotal > 5) {
       const stepItems = chunk(songIds, 300);
       try {
         await PlaylistItem.destroy({
@@ -199,13 +200,13 @@ class Xiami {
   }
 }
 
-export default Xiami;
+// export default Xiami;
 
-// (async () => {
-//   const nete = new Xiami();
-//   const has = nete.isExists();
-//   if (has) {
-//     const results = await nete.export();
-//     console.log("results", results.length);
-//   }
-// })();
+(async () => {
+  const nete = new Xiami();
+  const has = nete.isExists();
+  if (has) {
+    const results = await nete.export();
+    console.log("results", results.length);
+  }
+})();
