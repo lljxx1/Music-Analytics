@@ -14,7 +14,8 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": ""
+    "postinstall": "",
+    "test": "mocha"
   },
   "build": {
     "productName": "歌单助手",
@@ -53,6 +54,7 @@
   "dependencies": {
     "ant-design-vue": "^1.6.5",
     "axios": "^0.18.0",
+    "bplist-parser": "^0.2.0",
     "cors": "^2.8.5",
     "electron-baidu-tongji": "^1.0.5",
     "express": "^4.17.1",
@@ -92,6 +94,7 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "0.4.0",
+    "mocha": "^8.2.0",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
     "style-loader": "^0.21.0",

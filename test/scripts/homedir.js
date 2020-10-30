@@ -11,4 +11,4 @@ let files = [];
     `${homeDir}\\AppData\\Roaming\\Xiami\\Xiami.db`,
   ]);
 
-console.log('homeDir', files)
+console.log('homeDir', files, os.userInfo())

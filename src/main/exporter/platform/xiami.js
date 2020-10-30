@@ -5,6 +5,7 @@ const isWindows = process.platform == "win32";
 const userName = require("os").userInfo().username;
 const ini = require("ini");
 const sqlite3 = require("sqlite3");
+const { getXiamiSongFromMac } = require('./xiami_helpers')
 
 console.log("userName", userName);
 
@@ -12,17 +13,24 @@ const os = require("os");
 console.log("userName", userName);
 const homeDir = os.homedir() || `C:\\Users\\${userName}`;
 
- let files = [];
- if (isWindows) {
-   files.push([
-     `${homeDir}\\AppData\\Roaming\\Xiami\\xiami_info.ini`,
-     `${homeDir}\\AppData\\Roaming\\Xiami\\Xiami.db`,
-   ]);
- } else {
-   //   files.push(
-   //     `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
-   //   );
- }
+let files = [];
+if (isWindows) {
+  files.push([
+    `${homeDir}\\AppData\\Roaming\\Xiami\\xiami_info.ini`,
+    `${homeDir}\\AppData\\Roaming\\Xiami\\Xiami.db`,
+  ]);
+} else {
+  const baseDir = `${homeDir}/Library/Application Support/com.xiami.macclient`
+  if (fs.existsSync(baseDir)) {
+    const avfsDirs = fs.readdirSync(baseDir).filter(_ => _.indexOf('favorite.songid@') > -1);
+    if(avfsDirs.length) {
+      console.log('fond', avfsDirs[0])
+    }
+  }
+  // files.push([
+  //   `${homeDir}/Library/Application Support/com.xiami.macclient`
+  // ]);
+}
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -37,7 +45,6 @@ class Xiami {
   }
 
   isExists() {
-   
     const existsFiles = files.filter((_) => {
       if (typeof _ == "string") {
         return fs.existsSync(_);
@@ -84,7 +91,7 @@ class Xiami {
       USERPROFILE: process.env.USERPROFILE,
       HOME: process.env.HOME,
       platform: process.platform,
-      userName: userName,
+      uinfo: os.userInfo(),
     };
     debugInfo.checkFiles = files;
     debugInfo.type = this.type;
@@ -92,6 +99,17 @@ class Xiami {
   }
 
   async export(xiamiDatabase) {
+    if (isWindows) {
+      return await this.exportFromWindows();
+    }
+    return await getXiamiSongFromMac({
+      favsfile: this.existsFiles[0][1],
+      dbFile: this.existsFiles[0][0],
+      // skipCheck: true
+    })
+  }
+
+  async exportFromWindows(xiamiDatabase) {
     xiamiDatabase = xiamiDatabase || this.existsFiles[0][1];
     const sequelize = new Sequelize("main", null, null, {
       dialect: "sqlite",
@@ -128,7 +146,6 @@ class Xiami {
     if (songRows.length < songIds.length) {
       const stepItems = chunk(songIds, 300);
       try {
-        await PlaylistItem.sync({ alter: true });
         await PlaylistItem.destroy({
           where: {},
           truncate: true,
@@ -156,7 +173,9 @@ class Xiami {
         }
       }
       console.log("not found info");
-      throw Error("请重启虾米音乐，直到能点开【当前播放列表】后再尝试导入");
+      throw Error(
+        `请重启虾米音乐，直到能点开【当前播放列表】后再尝试导入 目前本地歌曲信息库有${songRows.length}首，收藏${songIds.length}首`
+      );
     }
 
     const orderedSongs = songIds

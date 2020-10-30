@@ -15,7 +15,7 @@ if (isWindows) {
   );
 } else {
   files.push(
-    `/Users/${userName}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
+    `${homeDir}/Library/Containers/com.netease.163music/Data/Documents/storage/sqlite_storage.sqlite3`
   );
 }
 
@@ -47,11 +47,11 @@ class Netease {
       USERPROFILE: process.env.USERPROFILE,
       HOME: process.env.HOME,
       platform: process.platform,
-      userName: userName,
+      uinfo: os.userInfo()
     };
 
     if(!isWindows) {
-      const macBaseDirectory = `/Users/${userName}/Library/Containers/com.netease.163music`
+      const macBaseDirectory = `${homeDir}/Library/Containers/com.netease.163music`
       debugInfo.hasFolder = fs.existsSync(macBaseDirectory)
       if(debugInfo.hasFolder) {
         debugInfo.childFolders = fs.readdirSync(macBaseDirectory)
