@@ -1,0 +1,16 @@
+find ~/Library/Caches/com.xiami.macclient -mmin  -1
+find ~/Library/Group\ Containers/597MX98Y4L.com.xiami.client -mmin  -1
+find ~/Library/WebKit/com.xiami.macclient -mmin  -1
+find ~/Library/Application\ Support/com.xiami.macclient -mmin  -1
+
+
+
+/Users/fun/Library/Application Support/com.xiami.macclient
+/Users/fun/Library/Application Support/com.xiami.macclient/DataBase/Music.sqlite-wal
+/Users/fun/Library/Application Support/com.xiami.macclient/DataBase/Music.sqlite
+/Users/fun/Library/Application Support/com.xiami.macclient/AVFSStorage/favorite.songid@3096251/avfs.sqlite-wal
+/Users/fun/Library/Application Support/com.xiami.macclient/AVFSStorage/config/avfs.sqlite-wal
+/Users/fun/Library/Application Support/com.xiami.macclient/AVFSStorage/player/avfs.sqlite-wal
+/Users/fun/Library/Application Support/com.xiami.macclient/utmc_store.sqlite
+/Users/fun/Library/Application Support/com.xiami.macclient/wvapp/config
+/Users/fun/Library/Application Support/com.xiami.macclient/wvapp/config/packageStatistics.config

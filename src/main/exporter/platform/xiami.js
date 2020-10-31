@@ -63,11 +63,15 @@ class Xiami {
       return null;
     }
     this.existsFiles = existsFiles;
-    return {
+    const out = {
       existsFiles: existsFiles[0],
       type: this.type,
       name: this.name,
     };
+    if (!isWindows) {
+      out.tip = '点击【我的收藏】 > 【随机播放】后再导入'
+    }
+    return out;
   }
 
   getCollectIds(xiamiConfigDatabase) {
@@ -208,13 +212,13 @@ class Xiami {
   }
 }
 
-// export default Xiami;
+export default Xiami;
 
-(async () => {
-  const nete = new Xiami();
-  const has = nete.isExists();
-  if (has) {
-    const results = await nete.export();
-    console.log("results", results.length);
-  }
-})();
+// (async () => {
+//   const nete = new Xiami();
+//   const has = nete.isExists();
+//   if (has) {
+//     const results = await nete.export();
+//     console.log("results", results.length);
+//   }
+// })();

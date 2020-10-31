@@ -3,6 +3,7 @@
     <a-card title="检测到歌单" :bordered="true" v-if="sources.length != 0 && !importing"> 
         <a-list item-layout="horizontal" :data-source="sources">
           <a-list-item slot="renderItem" slot-scope="item">
+            <span slot="actions" style="color: rgba(0, 0, 0, 0.25);">{{ item.tip }}</span>
             <a-list-item-meta>
               <span slot="title"> {{ item.name }} </span>
               <img
@@ -21,7 +22,8 @@
               <scale-loader class="loading" :loading="true" color="black" ></scale-loader>
               准备导入歌单..
           </div> -->
-          <div style="margin-top: 20px">
+          <div style="padding-top: 20px;
+    border-top: 1px solid #eee; font-size: 12px">
             <a-button type="primary" @click="importSongs" size="large" style="width: 140px" icon="search">开始导入</a-button>
           </div>
         </a-list>

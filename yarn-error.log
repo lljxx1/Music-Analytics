@@ -1,25 +1,25 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\fun\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+  /usr/local/bin/node /usr/local/bin/yarn add better-sqlite3
 
 PATH: 
-  C:\Users\fun\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\fun\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Bitvise SSH Client;C:\WINDOWS\System32\OpenSSH;C:\Go\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\scala\bin;C:\Program Files (x86)\sbt\bin;C:\Users\fun\AppData\Local\Microsoft\WindowsApps;C:\Users\fun\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\fun\AppData\Roaming\npm;C:\Users\fun\Documents\flutter-git\1.12\flutter\bin;C:\Users\fun\Documents\sdk\platform-tools;C:\xampp\php;C:\Program Files (x86)\mitmproxy\bin;C:\Program Files\Android\Android Studio\jre\bin;C:\Users\fun\go\bin;C:\Users\fun\AppData\Roaming\Composer\vendor\bin;C:\Users\fun\Downloads\fcli-v1.0.2-win-386;C:\Users\fun\AppData\Local\Programs\Python\Python37-32;C:\Users\fun\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/eosio/bin/:/Applications/VMware Fusion.app/Contents/Public:/Users/fun/Documents/flutter/flutter/bin:/Users/fun/Documents/flutter/flutter/bin
 
 Yarn version: 
-  1.17.3
+  1.19.1
 
 Node version: 
-  10.15.0
+  12.14.0
 
 Platform: 
-  win32 x64
+  darwin x64
 
 Trace: 
-  Error: ENOSPC: no space left on device, copyfile 'C:\Users\fun\AppData\Local\Yarn\Cache\v4\npm-accessibility-developer-tools-2.12.0-3da0cce9d6ec6373964b84f35db7cfc3df7ab514\node_modules\accessibility-developer-tools\lib\closure-library\closure\goog\fx\animation.js' -> 'C:\Users\fun\Documents\projects\a-hot\pcls\Music-Analytics\node_modules\accessibility-developer-tools\lib\closure-library\closure\goog\fx\animation.js'
+  Error: ENOENT: no such file or directory, copyfile '/Users/fun/Library/Caches/Yarn/v6/npm-ieee754-1.2.1-8eb7a10a63fff25d15a57b001586d177d1b0d352-integrity/node_modules/ieee754/LICENSE' -> '/Users/fun/Documents/ios/test/music-exporter/node_modules/bl/node_modules/ieee754/LICENSE'
 
 npm manifest: 
   {
     "name": "music-helper",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "fun <lljxx1@gmail.com>",
     "description": "歌单备份、分析",
     "license": null,
@@ -33,7 +33,8 @@ npm manifest:
       "pack": "npm run pack:main && npm run pack:renderer",
       "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
       "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-      "postinstall": ""
+      "postinstall": "",
+      "test": "mocha"
     },
     "build": {
       "productName": "歌单助手",
@@ -72,6 +73,8 @@ npm manifest:
     "dependencies": {
       "ant-design-vue": "^1.6.5",
       "axios": "^0.18.0",
+      "better-sqlite3": "^7.1.1",
+      "bplist-parser": "^0.2.0",
       "cors": "^2.8.5",
       "electron-baidu-tongji": "^1.0.5",
       "express": "^4.17.1",
@@ -105,12 +108,13 @@ npm manifest:
       "del": "^3.0.0",
       "devtron": "^1.4.0",
       "electron": "^9.3.1",
-      "electron-builder": "^20.19.2",
+      "electron-builder": "^22.9.1",
       "electron-debug": "^1.5.0",
       "electron-devtools-installer": "^2.2.4",
       "file-loader": "^1.1.11",
       "html-webpack-plugin": "^3.2.0",
       "mini-css-extract-plugin": "0.4.0",
+      "mocha": "^8.2.0",
       "multispinner": "^0.2.1",
       "node-loader": "^0.6.0",
       "style-loader": "^0.21.0",
