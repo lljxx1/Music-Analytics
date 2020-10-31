@@ -21,15 +21,21 @@ if (isWindows) {
   ]);
 } else {
   const baseDir = `${homeDir}/Library/Application Support/com.xiami.macclient`
+  const filePairs = []
+  filePairs.push(`${baseDir}/DataBase/Music.sqlite`);
   if (fs.existsSync(baseDir)) {
-    const avfsDirs = fs.readdirSync(baseDir).filter(_ => _.indexOf('favorite.songid@') > -1);
+    const dbDir = `${baseDir}/DataBase`;
+    const avsAll = `${baseDir}/AVFSStorage`;
+    const avfsDirs = fs
+      .readdirSync(avsAll)
+      .filter((_) => _.indexOf("favorite.songid@") > -1);
     if(avfsDirs.length) {
       console.log('fond', avfsDirs[0])
+      filePairs.push(`${avsAll}/${avfsDirs[0]}/avfs.sqlite`);
     }
   }
-  // files.push([
-  //   `${homeDir}/Library/Application Support/com.xiami.macclient`
-  // ]);
+  files.push(filePairs);
+  console.log("files", files);
 }
 
 const chunk = (arr, size) =>
@@ -102,11 +108,13 @@ class Xiami {
     if (isWindows) {
       return await this.exportFromWindows();
     }
-    return await getXiamiSongFromMac({
+    const macConfig = {
       favsfile: this.existsFiles[0][1],
       dbFile: this.existsFiles[0][0],
       // skipCheck: true
-    })
+    };
+    console.log("macConfig", macConfig);
+    return await getXiamiSongFromMac(macConfig);
   }
 
   async exportFromWindows(xiamiDatabase) {

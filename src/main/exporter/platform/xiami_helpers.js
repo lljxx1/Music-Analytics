@@ -3,6 +3,8 @@ const Sequelize = require("sequelize");
 const { QueryTypes } = require("sequelize");
 const bplistParser = require("bplist-parser");
 const { chunk } = require("./util");
+const fs = require("fs");
+const { getSQLite } = require('../../../sqlite')
 
 async function getXiamiSongIdsByMacAVFS(file) {
   const sequelize = new Sequelize("main", null, null, {
@@ -36,6 +38,23 @@ async function getXiamiSongIdsByMacAVFS(file) {
 }
 
 async function getXiamiSongsDataByMac(songIds, opt = {}) {
+  // const db = require("better-sqlite3")(opt.dbFile);
+  // db.pragma("journal_mode = WAL");
+  // const row = db.prepare("SELECT * FROM users WHERE id = ?").get(userId);
+  // console.log(row.firstName, row.lastName, row.email);
+  // return
+  let sqlite = getSQLite(opt.dbFile);
+  // const mo = await sqlite.query("PRAGMA journal_mode=WAL");
+  // console.log("mo", mo.resultSet[0]);
+  const playListItems = await sqlite.query(
+    "select * from song_info where song_id in (" + songIds.join(",") + ")"
+  );
+  // const clearResult = await sqlite.query("delete from list_items");
+  console.log(playListItems.resultSet[0]);
+  // clearResult, 
+
+  // return
+
   const sequelize = new Sequelize("main", null, null, {
     dialect: "sqlite",
     logging: false,
@@ -44,72 +63,37 @@ async function getXiamiSongsDataByMac(songIds, opt = {}) {
       // mode: sqlite3.OPEN_READONLY
     },
   });
+  // await sequelize.query("PRAGMA journal_mode = WAL");
   // songIds = songIds.reverse()
-  const songRows = await sequelize.query(
-    "select * from song_info where song_id in (" + songIds.join(",") + ")",
-    { type: QueryTypes.SELECT }
-  );
-  const PlaylistItem = sequelize.define(
-    "list_items",
-    {
-      list_auto_id: Sequelize.INTEGER,
-      item_id: Sequelize.INTEGER,
-      item_type: Sequelize.INTEGER,
-      pos_index: Sequelize.INTEGER,
-    },
-    {
-      freezeTableName: true,
-      timestamps: false,
-      indexes: [
-        {
-          unique: true,
-          fields: ["list_auto_id", "item_id", "item_type"],
-        },
-      ],
-    }
-  );
-  PlaylistItem.removeAttribute("id");
+  // fs.copyFileSync(opt.dbFile, "./data.db");
+  // return;
+  // const songRows = await sequelize.query(
+  //   "select * from song_info where song_id in (" + songIds.join(",") + ")",
+  //   { type: QueryTypes.SELECT }
+  // );
+  // const PlaylistItem = sequelize.define(
+  //   "list_items",
+  //   {
+  //     list_auto_id: Sequelize.INTEGER,
+  //     item_id: Sequelize.INTEGER,
+  //     item_type: Sequelize.INTEGER,
+  //     pos_index: Sequelize.INTEGER,
+  //   },
+  //   {
+  //     freezeTableName: true,
+  //     timestamps: false,
+  //     indexes: [
+  //       {
+  //         unique: true,
+  //         fields: ["list_auto_id", "item_id", "item_type"],
+  //       },
+  //     ],
+  //   }
+  // );
+  // PlaylistItem.removeAttribute("id");
   const skipCheck = opt.skipCheck || false;
-  const playItemsCount = await PlaylistItem.count();
-  console.log("now playlist", playItemsCount);
-  const percentTotal = (songIds.length - songRows.length) / songIds.length * 100
-  if (percentTotal > 5 && !skipCheck) {
-    let posIndex = 0;
-    const stepItems = chunk(songIds, 300);
-    try {
-      await PlaylistItem.destroy({
-        where: {},
-        truncate: true,
-      });
-    } catch (e) {
-      console.log("sync.error", e);
-    }
-    for (let index = 0; index < stepItems.length; index++) {
-      const newIds = stepItems[index];
-      console.log("insert", newIds.length);
-      try {
-        await PlaylistItem.bulkCreate(
-          newIds.map((_) => {
-            const pos = posIndex;
-            posIndex++;
-            return {
-              item_id: _,
-              item_type: 1,
-              list_auto_id: 1,
-              pos_index: pos,
-            };
-          }),
-          { ignoreDuplicates: true }
-        );
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    console.log("not found info");
-    throw Error(
-      `请重启虾米音乐，直到能点开【当前播放列表】后再尝试导入 目前本地歌曲信息库有${songRows.length}首，收藏${songIds.length}首`
-    );
-  }
+  // const playItemsCount = await PlaylistItem.count();
+  // console.log("now playlist", playItemsCount);
 
   const orderedSongs = songIds
     .map((_) => {
