@@ -7,7 +7,7 @@
     <p style="font-size: 22px; color: rgb(34, 34, 34);">歌单助手</p></a> 
     <div style="color: rgb(119, 119, 119); margin-top: 50px; margin-bottom: 40px">
         <p>作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
-        <p>版本：0.0.1</p> 
+        <p>版本：0.0.2</p> 
         <p>Github: <a href="https://github.com/lljxx1/Music-Analytics" target="_blank">lljxx1/Music-Analytics</a></p>
         <p>问题反馈:<a href="https://support.qq.com/products/284751" target="_blank">https://support.qq.com/products/284751</a></p>
     </div>

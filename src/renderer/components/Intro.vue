@@ -24,7 +24,8 @@
           </div> -->
           <div style="padding-top: 20px;
     border-top: 1px solid #eee; font-size: 12px">
-            <a-button type="primary" @click="importSongs" size="large" style="width: 140px" icon="search">开始导入</a-button>
+            <a-button type="dashed" @click="findSources" size="large" style="width: 140px; " icon="reload">重新扫描</a-button>
+            <a-button type="primary" @click="importSongs" size="large" style="width: 140px; margin-left: 25px" icon="search">导入</a-button>
           </div>
         </a-list>
     </a-card>
@@ -45,6 +46,7 @@
           <h4>Mac</h4>
           <ul>
             <li>网易云音乐 2.3.2 (Build: 832)</li>
+            <li>虾米音乐 7.5.8</li>
           </ul>
           <p>问题反馈: <a href="https://support.qq.com/products/284751">https://support.qq.com/products/284751</a>，或 联系作者: <a href="https://www.douban.com/people/52076105/" target="_blank">fun</a></p>
           <h4 style="margin-top: 35px">调试信息</h4>
