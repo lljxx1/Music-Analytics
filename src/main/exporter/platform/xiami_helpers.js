@@ -74,7 +74,7 @@ async function getXiamiSongsDataByMac(songIds, opt = {}) {
 export async function getXiamiSongFromMac(opts) {
   const data = await getXiamiSongIdsByMacAVFS(opts.favsfile);
   const formattedSongs = await getXiamiSongsDataByMac(data, opts);
-  return formattedSongs
+  return formattedSongs.reverse();
 }
 
 // module.export = {

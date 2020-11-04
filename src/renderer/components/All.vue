@@ -132,7 +132,10 @@ import moment from 'moment'
           if(query.filters) {
             // this.filters = filters
             params.dsl = {
-              where: dsl
+              where: dsl,
+              order: [
+                ['id', 'desc']
+              ]
             }
           }
           this.loading = true

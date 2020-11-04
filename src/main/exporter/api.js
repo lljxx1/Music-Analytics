@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const API = require('./index.js');
+const axios = require("axios");
 // import API from './index'
 
 // const API = {}
@@ -38,6 +39,21 @@ app.get("/api/import", async (req, res) => {
         });
     }
 });
+
+app.get("/proxy/http/get", async (req, res) => {
+  try {
+    const callData = await axios.get(req.query.url);
+    res.json({
+        response: callData.data,
+    });
+  } catch (e) {
+    res.json({
+      error: 1,
+      msg: e.toString(),
+    });
+  }
+});
+;
 
 app.get("/api/song/query", async (req, res) => {
     res.json(await API.listSongs(req.query));

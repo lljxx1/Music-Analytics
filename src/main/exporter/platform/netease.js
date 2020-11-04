@@ -150,7 +150,7 @@ class Netease {
       };
     });
     // console.log("songRows", formattedSongs.length);
-    return formattedSongs;
+    return formattedSongs.reverse();
   }
 }
 

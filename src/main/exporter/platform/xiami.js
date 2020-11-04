@@ -208,7 +208,7 @@ class Xiami {
         artist_logo: _.artistLogo,
       };
     });
-    return formattedSongs;
+    return formattedSongs.reverse();;
   }
 }
 
