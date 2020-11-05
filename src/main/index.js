@@ -66,7 +66,7 @@ ipcMain.on('baidu-tongji', (event, arg) => {
         tt: '歌单助手'
       }
     }
-    console.log(eventParams)
+    // console.log(eventParams)
     axios.get('https://hm.baidu.com/hm.gif', {
       params: eventParams
     })

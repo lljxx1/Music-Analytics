@@ -5,6 +5,12 @@
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible :style="{background: 'white'}"> 
       <!-- <div class="logo" /> -->
       <a-menu theme="light" mode="inline" :selectedKeys="selectedKeys">
+        <a-menu-item key="/explore">
+          <a @click="goExp">
+            <a-icon type="bulb" />
+            <span>发现音乐</span>
+          </a>
+        </a-menu-item>
         <a-menu-item key="/all" style="margin-top:0">
           <router-link  :to="'/all'">
             <a-icon type="heart" />
@@ -23,12 +29,15 @@
             <span>专辑</span>
           </router-link>
         </a-menu-item>
+        
         <a-menu-item key="/">
           <router-link :to="'/'">
             <a-icon type="search" />
             <span>导入</span>
           </router-link>
         </a-menu-item>
+       
+        <!-- https://music.wechatsync.com/explore -->
         <a-menu-item key="/about">
           <router-link  :to="'/about'">
             <a-icon type="info-circle" />
@@ -52,6 +61,8 @@
 </template>
 
 <script>
+
+import api from '@/api.js'
   export default {
     name: 'music-exporter',
     data() {
@@ -62,6 +73,17 @@
     watch: {
       $route() {
         this.selectedKeys = [this.$route.path]
+      }
+    },
+    methods : {
+      async goExp() {
+        const { data } = await api.get('/api/tabs/create', {
+          params: {
+            url: 'https://music.wechatsync.com/explore/?utm_source=desktop',
+            width: 1300,
+            height: 700
+          }
+        })
       }
     }
   }

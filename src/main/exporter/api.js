@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const API = require('./index.js');
 const axios = require("axios");
+import { BrowserWindow, Menu } from "electron";
 // import API from './index'
 
 // const API = {}
@@ -54,6 +55,24 @@ app.get("/proxy/http/get", async (req, res) => {
   }
 });
 ;
+
+app.get("/api/tabs/create", async (req, res) => {
+  try {
+    var width = req.query.width || 800;
+    var height = req.query.height || 600;
+    const win = new BrowserWindow({
+      width: parseInt(width),
+      height: parseInt(height),
+    });
+    // Load a remote URL
+    win.loadURL(req.query.url);
+    res.json({
+      status: 1,
+    });
+  } catch (e) {
+    res.send(e.toString());
+  }
+});
 
 app.get("/api/song/query", async (req, res) => {
     res.json(await API.listSongs(req.query));
