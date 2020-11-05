@@ -79,9 +79,10 @@ import api from '@/api.js'
       async goExp() {
         const { data } = await api.get('/api/tabs/create', {
           params: {
-            url: 'https://music.wechatsync.com/explore/?utm_source=desktop',
-            width: 1300,
-            height: 700
+            // url: 'https://music.wechatsync.com/explore/?utm_source=desktop',
+            url: 'http://localhost:8080',
+            width: 1340,
+            height: 900
           }
         })
       }

@@ -72,6 +72,18 @@ import api from '@/api.js'
     name: 'landing-page',
     components: { ScaleLoader },
     methods: {
+        async autoImport() {
+          for (let index = 0; index < this.sources.length; index++) {
+            const source = this.sources[index];
+            // this.importTip = '正在导入 '+ source.name
+            const { data } = await api.get('/api/import', {
+              params: {
+                type: source.type
+              }
+            })
+          }
+        },
+
         async importSongs() {
           this.importing = true
           let imported = 0
@@ -119,6 +131,7 @@ import api from '@/api.js'
               window._hmt.push(['_trackEvent', 'source', 'find', data.length]);
             } catch (e) {}
             console.log('findSources', data)
+            autoImport();
         },
       open (link) {
         this.$electron.shell.openExternal(link)
