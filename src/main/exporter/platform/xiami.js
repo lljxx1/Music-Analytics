@@ -187,7 +187,7 @@ class Xiami {
       }
       console.log("not found info");
       throw Error(
-        `请重启虾米音乐，直到能点开【当前播放列表】后再尝试导入 目前本地歌曲信息库有${songRows.length}首，收藏${songIds.length}首`
+        `请重启虾米音乐，重启虾米后等待能点开【播放器当前播放列表】后再重新导入；目前本地歌曲信息库有${songRows.length}首，实际收藏有${songIds.length}首！`
       );
     }
 
