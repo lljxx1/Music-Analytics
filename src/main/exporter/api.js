@@ -70,14 +70,8 @@ app.get("/api/tabs/create", async (req, res) => {
     
     // Once dom-ready
     win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures) => {
-<<<<<<< HEAD
-        options.width = options.width == 800 ? 1024 : options.width;
-        options.height = options.height == 600 ? 700 : options.height;
-
-=======
         options.width = options.width === 800 ? 1024 : options.width;
         options.height = options.height === 600 ? 720 : options.height;
->>>>>>> 68d893258a7805f26524f0ba293a8bef4e5a9528
         (function loop() {
           const neteasts = webContents.getAllWebContents().filter(_ => {
             return _.webContents.getURL().indexOf('music.163.com') > -1

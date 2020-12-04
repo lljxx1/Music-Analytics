@@ -75,7 +75,6 @@ import api from '@/api.js'
         async autoImport() {
           for (let index = 0; index < this.sources.length; index++) {
             const source = this.sources[index];
-            // this.importTip = '正在导入 '+ source.name
             const { data } = await api.get('/api/import', {
               params: {
                 type: source.type
@@ -131,7 +130,7 @@ import api from '@/api.js'
               window._hmt.push(['_trackEvent', 'source', 'find', data.length]);
             } catch (e) {}
             console.log('findSources', data)
-            autoImport();
+            this.autoImport();
         },
       open (link) {
         this.$electron.shell.openExternal(link)
