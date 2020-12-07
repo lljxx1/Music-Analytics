@@ -11,6 +11,8 @@
         <p>Github: <a href="https://github.com/lljxx1/Music-Analytics" target="_blank">lljxx1/Music-Analytics</a></p>
         <p>问题反馈:<a href="https://support.qq.com/products/284751" target="_blank">https://support.qq.com/products/284751</a></p>
     </div>
+    <p><span>&nbsp;</span><img src="https://txc.gtimg.com/data/105772/2020/1206/9d88d68c1d7d22dfb442989d3133ca41.png" width="400" alt="9d88d68c1d7d22dfb442989d3133ca41.png"></p>
+    <p style="margin-bottom: 30px"><span style="color:#111;">关注公众号以便接收【新功能】的通知</span></p>
 </div>
   </a-card>
 </template>
