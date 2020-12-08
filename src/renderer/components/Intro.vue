@@ -29,6 +29,10 @@
           </div>
         </a-list>
     </a-card>
+
+    <div v-if="sources.length != 0 && !importing" style="margin-top: 15px">
+      <p>需要导出虾米【收藏专辑、艺人】和导入收藏歌曲到网易云。请使用网页版：<br> Chrome浏览器打开https://music.wechatsync.com/explore/#/export</p>
+    </div>
     <a-card title="导入歌单" :bordered="true" v-if="importing"> 
         <scale-loader class="loading" :loading="importing" color="black" ></scale-loader>
         <div v-html="importTip" style="padding-top: 25px; text-align: center"></div>
