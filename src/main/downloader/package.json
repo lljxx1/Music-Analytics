@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "fetch-cookie": "^0.11.0"
+  }
+}
