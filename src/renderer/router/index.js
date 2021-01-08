@@ -6,6 +6,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: "/downloader",
+      name: "downloader",
+      component: require("@/components/Downloader").default,
+    },
+    {
       path: "/all",
       name: "All",
       component: require("@/components/All").default,

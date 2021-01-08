@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const API = require('./index.js');
+const Dowanloader = require("../downloader/app");
 const axios = require("axios");
 import { webContents, BrowserWindow, Menu } from "electron";
 const { session } = require('electron')
@@ -13,6 +14,27 @@ var expressWs = require('express-ws')(app);
 
 app.use(cors());
 console.log("process.versions", require("./index.js"));
+
+app.get("/downloader/create", async (req, res) => {
+  var task = await Dowanloader.createTask();
+  res.json({
+    task: task
+  });
+});
+
+app.get("/downloader/start", async (req, res) => {
+  var task = Dowanloader.runDownloadTask(req.query);
+  res.json({
+    start: 1,
+  });
+});
+
+app.get("/downloader/status", async (req, res) => {
+  var status = await Dowanloader.getStatus(req.query);
+  res.json({
+    status: status,
+  });
+});
 
 app.get("/versions", async (req, res) => {
     res.json({

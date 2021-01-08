@@ -24,12 +24,18 @@
           </router-link>
         </a-menu-item>
         <a-menu-item key="/album">
+
           <router-link :to="'/album'">
             <a-icon type="profile" />
             <span>专辑</span>
           </router-link>
         </a-menu-item>
-        
+          <a-menu-item key="/downloader">
+          <router-link :to="'/downloader'">
+            <a-icon type="download" />
+            <span>批量下载</span>
+          </router-link>
+        </a-menu-item>
         <a-menu-item key="/">
           <router-link :to="'/'">
             <a-icon type="search" />

@@ -6,7 +6,7 @@ const bplistParser = require("bplist-parser");
 const fs = require("fs");
 // const { getSQLite } = require('../../../sqlite')
 
-async function getXiamiSongIdsByMacAVFS(file) {
+export async function getXiamiSongIdsByMacAVFS(file) {
   const sequelize = new Sequelize("main", null, null, {
     dialect: "sqlite",
     logging: false,
@@ -77,7 +77,7 @@ export async function getXiamiSongFromMac(opts) {
   return formattedSongs.reverse();
 }
 
-// module.export = {
+// exports = {
 //   getXiamiSongIdsByMacAVFS: getXiamiSongIdsByMacAVFS,
 //   getXiamiSongsDataByMac,
 //   getXiamiSongFromMac
