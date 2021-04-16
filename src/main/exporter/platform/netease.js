@@ -102,7 +102,7 @@ class Netease {
         return JSON.parse(_.playlist);
       })
       .filter((playlist) => {
-        return playlist.name == "我喜欢的音乐" && playlist.trackCount > 0;
+        return playlist.name == "我喜欢的音乐" && playlist.trackCount > 0 && !playlist.anonimous;
       });
     
     console.log('likePlaylists', likePlaylists)

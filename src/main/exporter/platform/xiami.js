@@ -156,7 +156,7 @@ class Xiami {
     );
     PlaylistItem.removeAttribute("id");
     const percentTotal = (songIds.length - songRows.length) / songIds.length * 100
-    if (percentTotal > 5) {
+    if (false) {
       const stepItems = chunk(songIds, 300);
       try {
         await PlaylistItem.destroy({
